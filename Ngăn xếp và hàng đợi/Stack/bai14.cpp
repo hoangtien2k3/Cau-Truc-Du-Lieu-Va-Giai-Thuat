@@ -1,11 +1,13 @@
 
-#include<iostream>
+// chuyển từ thập phân sang nhị phân
+
 #include<bits/stdc++.h>
 #include<stack>
 
 using namespace std;
 
 int main() {
+
     stack<int> st;
     int n;
     cin >> n;
@@ -22,7 +24,6 @@ int main() {
     
     return 0;
 }
-
 
 
 

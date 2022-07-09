@@ -1,6 +1,6 @@
 
 /*
-    ! cấu trúc stack.
+    ! cấu trúc stack. (LIFO : Last in frist out)
 
     Stack là một loại container adaptor, được thiết kế để hoạt động theo kiểu LIFO (Last - in first - out) 
     (vào sau ra trước), tức là một kiểu danh sách mà việc bổ sung và loại bỏ một phần tử được thực hiển ở 
@@ -10,8 +10,8 @@
     cùng thì vở bài tập củangười đó sẽ được giáo viên kiểm tra đầu tiên
 
 
-//! 
-    Stack có các hàm sau (ví dụ cho C++):
+    
+    ! Stack có các hàm sau (ví dụ cho C++):
         size : trả về kích thước hiện tại của stack. ĐPT O(1).
         empty : true stack nếu rỗng, và ngược lại. ĐPT O(1).
         push : đẩy phần tử vào stack. ĐPT O(1).
