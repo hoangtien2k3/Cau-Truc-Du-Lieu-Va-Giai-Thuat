@@ -12,7 +12,7 @@
 
     Test mẫu 1:
 
-    Input	Output
+    Input Output
     30
 
     2 3 5 7 23 29 
