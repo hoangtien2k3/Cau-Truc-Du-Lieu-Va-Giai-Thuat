@@ -63,7 +63,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
 // cau truc Node
 struct Node {
     int data;
