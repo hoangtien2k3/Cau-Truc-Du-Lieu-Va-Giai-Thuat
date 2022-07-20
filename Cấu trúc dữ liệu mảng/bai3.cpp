@@ -13,6 +13,7 @@ Input	Input
 Với n = 4 và a = [1, 2, 3, 4] thì kết quả mong muốn là: "1 4 9 16 ".
 
 */
+
 #include<iostream>
 #include<cmath>
 #include<bits/stdc++.h>
