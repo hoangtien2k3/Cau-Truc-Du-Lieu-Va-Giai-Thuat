@@ -63,6 +63,8 @@ Link: https://topdev.vn/blog/danh-sach-lien-ket-don-trong-c/
 
 
 
+
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -77,6 +79,7 @@ Node *makeNode(int x) {
     Node *temp = new Node;
     temp->data = x;
     temp->next = NULL;
+    return temp;
 }
 
 bool empty(Node *a) {
@@ -231,6 +234,8 @@ int main() {
         }
     }   
 }
+
+
 
 
 

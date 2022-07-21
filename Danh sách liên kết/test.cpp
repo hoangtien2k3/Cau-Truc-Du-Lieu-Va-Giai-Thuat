@@ -14,6 +14,7 @@ Node *makeNode(int x) {
     Node *temp = new Node;
     temp->data = x;
     temp->next = NULL;
+    return temp;
 }
 
 bool empty(Node *a) {
@@ -168,3 +169,4 @@ int main() {
         }
     }   
 }
+
