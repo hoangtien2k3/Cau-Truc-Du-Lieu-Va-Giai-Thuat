@@ -57,17 +57,18 @@ int size(Node *a) {
 
 void deleteElementsMoreK(Node* &a, int k) {
     Node *p = a;
-    int answer = 0;
-    for(int i = 0; i < k; i++) {
-        p = p->next;
-        answer = p->data;
+    int answer = 0, count = 0;
+    for(Node *vt = a; vt != NULL; vt = vt->next) {
+        if (count == k) {
+            answer = vt->data;
+        }
+        count++;
     }
     Node *res = a;
-    for(int i = 0; i < size(a); i++) {
+    for(Node *res = a; res != NULL; res = res->next) {
         if (res->data <= answer) {
             cout << res->data << " ";
         }
-        res = res->next;
     }
 }
 
@@ -76,7 +77,7 @@ int main() {
     cin >> n;
     cin >> x;
     Node *a = makeNode(x);
-    for(int i = 1; i < n; i++) {
+    for(int i=1; i < n; i++) {
         cin >> x;
         addMiddle(a, x);
     }
@@ -84,4 +85,5 @@ int main() {
     deleteElementsMoreK(a, k);
     return 0;
 }
+
 

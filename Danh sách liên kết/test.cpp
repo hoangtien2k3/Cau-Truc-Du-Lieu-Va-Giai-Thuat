@@ -118,6 +118,21 @@ void deleteMiddle(node &a, int pos) {
     }
 }
 
+// sắp xếp theo thứ tự tăng dần trong danh sách liên kết:
+void sapxep(node &a) { // selection sort
+    for(node p = a; p->next != NULL; p = p->next) {
+        node min = p;
+        for(node q = p->next; q != NULL; q = q->next) {
+            if (q->data < min->data) {
+                min = q;
+            }
+        }
+        int temp = min->data;
+        min->data = p->data;
+        p->data = temp;
+    }
+}
+
 
 // in danh sach:
 void in_danh_sach(node a) {
@@ -141,7 +156,8 @@ int main() {
         cout << "5. xoa phan tu o cuoi\n";
         cout << "6. xoa phan tu o giua\n";
         cout << "7. duyet danh sach lien ket\n";
-        cout << "8. KET THUC CHUONG TRINH\n";
+        cout << "8. sap xep phan tu tang dan\n";
+        cout << "0. KET THUC CHUONG TRINH\n";
         cout << "___________________________\n";
         cout << "---Nhap lua chon---: ";
         int lc; cin >> lc;
@@ -165,7 +181,9 @@ int main() {
         } else if (lc == 7) {
             in_danh_sach(head);
         } else if (lc == 8){
-            return 0;
+            sapxep(head);
+        } else if (lc == 0) {
+            break;
         }
     }   
 }

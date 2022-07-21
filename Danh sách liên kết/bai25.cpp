@@ -33,7 +33,7 @@ Node *makeNode(int x) {
     return temp;
 }
 
-void addTail(Node* &a, int x) {
+Node *addTail(Node *a, int x) {
     Node *temp = makeNode(x);
     if (a == NULL) {
         a = temp;
@@ -44,9 +44,10 @@ void addTail(Node* &a, int x) {
         }
         p->next = temp;
     }
+    return a;
 }
 
-void addMiddle(Node* &a, int c, int b) {
+Node *addMiddle(Node *a, int c, int b) {
     Node *p = a;
     while(p->next != NULL) {
         if (p->data == c) {
@@ -54,6 +55,7 @@ void addMiddle(Node* &a, int c, int b) {
         }
         p = p->next;
     }
+    return a;
 }
 
 void in(Node *a) {
