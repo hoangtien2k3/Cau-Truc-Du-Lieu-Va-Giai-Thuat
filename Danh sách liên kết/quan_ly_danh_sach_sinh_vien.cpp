@@ -40,7 +40,6 @@ int size(NodeSV *a) {
     return count;
 }
 
-
 // thêm phần tử vào đầu danh sách:
 void addHead(NodeSV* &a) {
     NodeSV *temp = makeNode();
@@ -65,7 +64,6 @@ void addTail(NodeSV* &a) {
         p->next = temp;
     }
 }
-
 
 // thêm một phâng tử vào giữa:
 void addMiddle(NodeSV* &a, int pos) {
@@ -95,7 +93,6 @@ void deleteHead(NodeSV* &a) {
     a = a->next;
 }
 
-
 // xóa phần tử ở cuối:
 void deleteTail(NodeSV* &a) {
     if (a == NULL) return;
@@ -112,7 +109,6 @@ void deleteTail(NodeSV* &a) {
     }
 }
     
-
 // xóa phần tử ở giữa:
 void deleteMiddle(NodeSV* &a, int pos) {
     if (pos <= 0 || pos > size(a)) return;
@@ -144,7 +140,6 @@ void sapxep(NodeSV* &a) { // selection sort
     }
 }
 
-
 void in(Student s) {
     cout << "\n____________________________\n";
     cout << "ID: " << s.id << endl;
@@ -162,7 +157,6 @@ void in_danh_sach(NodeSV *a) {
     }
     cout << endl;
 }
-
 
 int main() {
     NodeSV *head = NULL; // node đầu tiên bằng NULL
