@@ -13,20 +13,27 @@ struct SinhVien {
 	string ngaysinh;
 	string lop;
 };
+
 typedef struct SinhVien sinhvien;
+
 struct node {
 	sinhvien *data;
 	struct  node* link;
 };
+
 typedef struct node Node;
+
 struct list {
 	Node* pHead;
 	Node* pTail;
 };
+
 typedef struct list List;
+
 void KhoiTaoList(List &l) {
 	l.pHead = l.pTail = NULL;
 }
+
 void Input_ThongTin(sinhvien *sv) {
 	cin.ignore();
 	cout << "Nhap Ten sinh vien: \n";
@@ -44,6 +51,7 @@ void Input_ThongTin(sinhvien *sv) {
 	cout << "Nhap lop cua sinh vien : ";
 	getline(cin, sv->lop);
 }
+
 Node *KhoiTaoNode() {
 	sinhvien* sv = new sinhvien;
 	Input_ThongTin(sv);
@@ -56,6 +64,7 @@ Node *KhoiTaoNode() {
 	p->link = NULL;
 	return p;
 }
+
 void ThemVaoDauMotSinhVien(List &l, Node *p) {
 	if (l.pHead == NULL) {
 		l.pHead = l.pTail= p;
@@ -65,6 +74,7 @@ void ThemVaoDauMotSinhVien(List &l, Node *p) {
 		l.pHead = p;
 	}
 }
+
 void Show(List l) {
 	for (Node* k = l.pHead; k != NULL; k = k->link) {
 		cout << "MSSV : " << k->data->mssv<<endl;
@@ -75,6 +85,7 @@ void Show(List l) {
 		cout << "==============================SV================\n";
 	}
 }
+
 void showNode(Node *k) {
 	cout << "==============================SV================\n";
 	cout << "MSSV : " << k->data->mssv << endl;
@@ -83,6 +94,7 @@ void showNode(Node *k) {
 	cout << "Ngay Sinh : " << k->data->ngaysinh << endl;
 	cout << "Lop : " << k->data->lop << endl;
 }
+
 void DelSinhVien(List& l) {
 	string del;
 	cin.ignore();
@@ -101,7 +113,7 @@ void DelSinhVien(List& l) {
 			}
 			g = k;
 		}
-}
+	}
 }
 
 void search(List l ) {

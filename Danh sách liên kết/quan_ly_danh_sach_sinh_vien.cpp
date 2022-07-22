@@ -1,27 +1,37 @@
 
+// quản lý danh sách sinh viên theo danh sách liên kết đơn
 
 #include<bits/stdc++.h>
 using namespace std;
 
-struct Node {
-    int data;
-    Node *next;
+struct Student {
+    string name, id;
+    double gpa;
 };
 
-typedef struct Node* node;
+struct NodeSV {
+    Student s;
+    NodeSV *next;
+};
 
-Node *makeNode(int x) {
-    Node *temp = new Node;
-    temp->data = x;
+NodeSV *makeNode() {
+    Student s;
+    cout << "Nhap Thong Tin Sinh Vien: \n";
+    cout << "Nhap vao ID: "; cin >> s.id;
+    cout << "Nhap vao ten: "; cin.ignore();
+    getline(cin, s.name);
+    cout << "Nhap gpa: "; cin >> s.gpa;
+    NodeSV *temp = new NodeSV();
+    temp->s = s;
     temp->next = NULL;
     return temp;
 }
 
-bool empty(Node *a) {
+bool empty(NodeSV *a) {
     return a == NULL;
 }
 
-int size(node a) {
+int size(NodeSV *a) {
     int count = 0;
     while(a != NULL) {
         ++count;
@@ -32,8 +42,8 @@ int size(node a) {
 
 
 // thêm phần tử vào đầu danh sách:
-void addHead(node &a, int x) {
-    node temp = makeNode(x);
+void addHead(NodeSV* &a) {
+    NodeSV *temp = makeNode();
     if (a == NULL) {
         a = temp; // gán luôn a cho node ta thêm vào( vì a là phần tử đầu danh sách liên kết)
     } else {
@@ -43,12 +53,12 @@ void addHead(node &a, int x) {
 }
 
 // thêm phần tử vào cuối danh sách:
-void addTail(node &a, int x) {
-    node temp = makeNode(x);
+void addTail(NodeSV* &a) {
+    NodeSV *temp = makeNode();
     if (a == NULL) {
         a = temp;
     } else {
-        node p = a; // để danh sách không bị biến đổi
+        NodeSV *p = a; // để danh sách không bị biến đổi
         while(p->next != NULL) {
             p = p->next;
         }
@@ -58,39 +68,39 @@ void addTail(node &a, int x) {
 
 
 // thêm một phâng tử vào giữa:
-void addMiddle(node &a, int x, int pos) {
+void addMiddle(NodeSV* &a, int pos) {
     int n = size(a);
     if (pos <= 0 || pos > n + 1) {
-        cout << "Vi tri chen khong hop le!" << endl;
-    } else if (n == 1) {
-        addHead(a, x); 
+        cout << "Vi tri chen khong hop le!"; return;
+    } else if (pos == 1) {
+        addHead(a); 
         return;
     } else if (n == pos + 1) {
-        addTail(a, x);
+        addTail(a);
         return;
     } else {
-        node p = a;
+        NodeSV *p = a;
         for(int i = 1; i < pos - 1; i++) {
             p = p->next;
         }
-        node temp = makeNode(x);
+        NodeSV *temp = makeNode();
         temp->next = p->next;
         p->next = temp;
     }
 }
 
-
 // xóa phần tử ở đầu:
-void deleteHead(node &a) {
+void deleteHead(NodeSV* &a) {
     if (a == NULL) return;
     a = a->next;
 }
 
 
 // xóa phần tử ở cuối:
-void deleteTail(node &a) {
+void deleteTail(NodeSV* &a) {
     if (a == NULL) return;
-    node truoc = NULL, sau = a;
+    NodeSV *truoc = NULL;
+    NodeSV *sau = a;
     while(sau->next != NULL) {
         truoc = sau;
         sau = sau->next;
@@ -104,9 +114,10 @@ void deleteTail(node &a) {
     
 
 // xóa phần tử ở giữa:
-void deleteMiddle(node &a, int pos) {
+void deleteMiddle(NodeSV* &a, int pos) {
     if (pos <= 0 || pos > size(a)) return;
-    node truoc = NULL, sau = a;
+    NodeSV *truoc = NULL;
+    NodeSV *sau = a;
     for(int i = 1; i < pos; i++) {
         truoc = sau;
         sau = sau->next;
@@ -119,58 +130,63 @@ void deleteMiddle(node &a, int pos) {
 }
 
 // sắp xếp theo thứ tự tăng dần trong danh sách liên kết:
-void sapxep(node &a) { // selection sort
-    for(node p = a; p->next != NULL; p = p->next) {
-        node min = p;
-        for(node q = p->next; q != NULL; q = q->next) {
-            if (q->data < min->data) {
+void sapxep(NodeSV* &a) { // selection sort
+    for(NodeSV *p = a; p->next != NULL; p = p->next) {
+        NodeSV *min = p;
+        for(NodeSV *q = p->next; q != NULL; q = q->next) {
+            if (q->s.gpa < min->s.gpa) {
                 min = q;
             }
         }
-        int temp = min->data;
-        min->data = p->data;
-        p->data = temp;
+        Student temp = min->s;
+        min->s = p->s;
+        p->s = temp;
     }
 }
 
 
-// in danh sach:
-void in_danh_sach(node a) {
+void in(Student s) {
     cout << "\n____________________________\n";
+    cout << "ID: " << s.id << endl;
+    cout << "Ho Ten: " << s.name << endl;
+    cout << "GPA: " << fixed << setprecision(2) << s.gpa << endl;
+    cout << "\n____________________________\n";
+}
+
+// in danh sach:
+void in_danh_sach(NodeSV *a) {
+    cout << "Danh Sach Sinh Vien: \n";
     while(a != NULL) {
-        cout << a->data << " ";
+        in(a->s);
         a = a->next;
     }
-    cout << "\n____________________________\n";
+    cout << endl;
 }
 
 
 int main() {
-    node head = NULL; // node đầu tiên bằng NULL
+    NodeSV *head = NULL; // node đầu tiên bằng NULL
     while(1) {
         cout << "____________Menu__________\n";
-        cout << "1. chen phan tu o dau danh sach\n";
-        cout << "2. chen phan tu o cuoi danh sach\n";
-        cout << "3. chen phan tu o giua danh sach\n";
+        cout << "1. chen sinh vien o dau danh sach\n";
+        cout << "2. chen sinh vien o cuoi danh sach\n";
+        cout << "3. chen sinh vien o giua danh sach\n";
         cout << "4. xoa phan tu o dau\n";
         cout << "5. xoa phan tu o cuoi\n";
         cout << "6. xoa phan tu o giua\n";
         cout << "7. duyet danh sach lien ket\n";
-        cout << "8. sap xep phan tu tang dan\n";
+        cout << "8. sap xep sinh vien theo GPA tang dan\n";
         cout << "0. KET THUC CHUONG TRINH\n";
         cout << "___________________________\n";
         cout << "---Nhap lua chon---: ";
         int lc; cin >> lc;
         if (lc == 1) {
-            int x; cout << "Nhap gia tri can chen: "; cin >> x;
-            addHead(head, x);
+            addHead(head);
         } else if (lc == 2) {
-            int x; cout << "Nhap gia tri can chen: "; cin >> x;
-            addTail(head, x);
+            addTail(head);
         } else if (lc == 3) {
-            int x; cout << "Nhap gia tri can chen: "; cin >> x;
             int pos; cout << "Nhap vi tri can chen: "; cin >> pos;
-            addMiddle(head, x, pos);
+            addMiddle(head, pos);
         } else if (lc == 4) {
             deleteHead(head);
         } else if (lc == 5) {
